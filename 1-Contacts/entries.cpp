@@ -2,7 +2,7 @@
  * @Author: FunctionSir
  * @License: AGPLv3
  * @Date: 2025-03-18 17:57:00
- * @LastEditTime: 2025-03-20 14:59:20
+ * @LastEditTime: 2025-03-20 15:26:07
  * @LastEditors: FunctionSir
  * @Description: Entries related.
  * @FilePath: /CppAtSdtbu/1-Contacts/entries.cpp
@@ -28,6 +28,7 @@ class Entry {
         Note = note;
     }
 
+    // Build entry from cin, interactive.
     void from_cin_interactive(void) {
         cerr << "Tips: 您可以使用\"-\"符号来作为\"占位符\"." << endl;
         cerr << "请输入姓(不要包含空格): " << endl << ">>> ";
@@ -63,6 +64,7 @@ class Entry {
         getline(cin, Note);
     }
 
+    // Build entry from USSV line.
     void from_ussv(string &ussv) {
         int partCnt = 0;
         istringstream isstream(ussv);
@@ -161,6 +163,7 @@ class Entry {
         PartGroup,
         PartNote
     };
+
     void set_attribute_by_part_id(Part part, string &data) {
         switch (part) {
         case PartFirstName:

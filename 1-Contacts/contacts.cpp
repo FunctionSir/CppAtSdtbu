@@ -2,7 +2,7 @@
  * @Author: FunctionSir
  * @License: AGPLv3
  * @Date: 2025-03-18 17:56:27
- * @LastEditTime: 2025-03-20 15:07:35
+ * @LastEditTime: 2025-03-20 15:25:48
  * @LastEditors: FunctionSir
  * @Description: Contacts related.
  * @FilePath: /CppAtSdtbu/1-Contacts/contacts.cpp
@@ -37,6 +37,7 @@ class Contacts { // Class Contacts
         }
     }
 
+    // Flush changes to disk.
     bool flush() {
         ofstream fileStream(FilePath);
         if (!fileStream.is_open()) {
@@ -46,7 +47,7 @@ class Contacts { // Class Contacts
         return true;
     }
 
-    // Load from USSV file
+    // Load from USSV file.
     bool load_from_file(string filePath) {
         FilePath = filePath;
         ifstream fileStream;
@@ -111,6 +112,7 @@ class Contacts { // Class Contacts
         add_new_entry(newEntry);
     }
 
+    // Find by full text. Map accelerated.
     set<size_t> find_full(char by, string &target) {
         set<size_t> result;
         bool flg = 0;
@@ -144,6 +146,7 @@ class Contacts { // Class Contacts
         }
     }
 
+    // Find by part of text.
     set<size_t> find_part(char by, string &target) {
         set<size_t> result;
         bool flg = 0;
@@ -209,6 +212,7 @@ class Contacts { // Class Contacts
         }
     }
 
+    // Find by regex matched or not.
     set<size_t> find_regex(char by, string &target) {
         regex pattern(target);
         set<size_t> result;
@@ -273,6 +277,7 @@ class Contacts { // Class Contacts
         }
     }
 
+    // Print result set to stdout.
     void cout_by_res_set(set<size_t> &res, bool asianStyle) {
         cout << "索引\t"
              << entries::Entry::get_csv_header(true, asianStyle, "\t", "\n");
@@ -294,10 +299,12 @@ class Contacts { // Class Contacts
         Entries.erase(Entries.begin() + long(index));
     }
 
+    // Get const ref of a entry.
     const entries::Entry &get_entry_const_ref(size_t index) {
         return Entries[index];
     }
 
+    // Modify an entry.
     bool mod_entry(size_t index, char part, string &data) {
         switch (part) {
         case 'F':
@@ -347,6 +354,7 @@ class Contacts { // Class Contacts
         return true;
     }
 
+    // Get contacts size (count of entries).
     size_t size(void) {
         return Entries.size();
     }
@@ -370,7 +378,7 @@ class Contacts { // Class Contacts
         ByEmail[newEntry.Email].insert(Entries.size() - 1);
         ByGroup[newEntry.Group].insert(Entries.size() - 1);
     }
-    void load_from_file(ifstream &fileStream) {
+    void load_from_ifstream(ifstream &fileStream) {
         string tmp;
         while (getline(fileStream, tmp)) {
             entries::Entry newEntry;
