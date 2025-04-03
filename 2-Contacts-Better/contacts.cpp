@@ -2,7 +2,7 @@
  * @Author: FunctionSir
  * @License: AGPLv3
  * @Date: 2025-03-18 17:56:27
- * @LastEditTime: 2025-04-03 20:42:49
+ * @LastEditTime: 2025-04-03 21:35:36
  * @LastEditors: FunctionSir
  * @Description: Contacts related.
  * @FilePath: /2-Contacts-Better/contacts.cpp
@@ -120,7 +120,6 @@ void Contacts::list_to_cout(char sortBy, bool desc, bool asianStyle) const {
     case 'P':
         if (!desc) {
             for (auto i : ByPhone) {
-                cout << "[ " << i.first << " ]" << "\n";
                 for (auto j : i.second) {
                     cout << entries_with_index[j].first << "\t"
                          << entries_with_index[j].second.to_csv(true, asianStyle, "\t", "\n");
@@ -128,7 +127,6 @@ void Contacts::list_to_cout(char sortBy, bool desc, bool asianStyle) const {
             }
         } else {
             for (auto i = ByPhone.rbegin(); i != ByPhone.rend(); i++) {
-                cout << "[ " << i->first << " ]" << "\n";
                 for (auto j : i->second) {
                     cout << entries_with_index[j].first << "\t"
                          << entries_with_index[j].second.to_csv(true, asianStyle, "\t", "\n");
@@ -139,7 +137,6 @@ void Contacts::list_to_cout(char sortBy, bool desc, bool asianStyle) const {
     case 'T':
         if (!desc) {
             for (auto i : ByTel) {
-                cout << "[ " << i.first << " ]" << "\n";
                 for (auto j : i.second) {
                     cout << entries_with_index[j].first << "\t"
                          << entries_with_index[j].second.to_csv(true, asianStyle, "\t", "\n");
@@ -147,7 +144,6 @@ void Contacts::list_to_cout(char sortBy, bool desc, bool asianStyle) const {
             }
         } else {
             for (auto i = ByTel.rbegin(); i != ByTel.rend(); i++) {
-                cout << "[ " << i->first << " ]" << "\n";
                 for (auto j : i->second) {
                     cout << entries_with_index[j].first << "\t"
                          << entries_with_index[j].second.to_csv(true, asianStyle, "\t", "\n");
@@ -158,7 +154,6 @@ void Contacts::list_to_cout(char sortBy, bool desc, bool asianStyle) const {
     case 'E':
         if (!desc) {
             for (auto i : ByEmail) {
-                cout << "[ " << i.first << " ]" << "\n";
                 for (auto j : i.second) {
                     cout << entries_with_index[j].first << "\t"
                          << entries_with_index[j].second.to_csv(true, asianStyle, "\t", "\n");
@@ -166,7 +161,6 @@ void Contacts::list_to_cout(char sortBy, bool desc, bool asianStyle) const {
             }
         } else {
             for (auto i = ByEmail.rbegin(); i != ByEmail.rend(); i++) {
-                cout << "[ " << i->first << " ]" << "\n";
                 for (auto j : i->second) {
                     cout << entries_with_index[j].first << "\t"
                          << entries_with_index[j].second.to_csv(true, asianStyle, "\t", "\n");
