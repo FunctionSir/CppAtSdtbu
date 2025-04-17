@@ -2,7 +2,7 @@
  * @Author: FunctionSir
  * @License: AGPLv3
  * @Date: 2025-03-18 17:57:00
- * @LastEditTime: 2025-03-20 15:26:07
+ * @LastEditTime: 2025-04-17 20:42:20
  * @LastEditors: FunctionSir
  * @Description: Entries related.
  * @FilePath: /CppAtSdtbu/1-Contacts/entries.cpp
@@ -20,9 +20,8 @@ class Entry {
     string Phone, Tel, Email;
     string Group, Note;
 
-    void set_attributes(string firstName = "", string lastName = "",
-                        string phone = "", string tel = "", string email = "",
-                        string note = "") {
+    void set_attributes(string firstName = "", string lastName = "", string phone = "", string tel = "",
+                        string email = "", string note = "") {
         FirstName = firstName, LastName = lastName;
         Phone = phone, Tel = tel, Email = email;
         Note = note;
@@ -91,14 +90,13 @@ class Entry {
     }
 
     string to_ussv(string end = "") {
-        return FirstName + "\x1f" + LastName + "\x1f" + Phone + "\x1f" + Tel +
-               "\x1f" + Email + "\x1f" + Group + "\x1f" + Note + end;
+        return FirstName + "\x1f" + LastName + "\x1f" + Phone + "\x1f" + Tel + "\x1f" + Email + "\x1f" + Group +
+               "\x1f" + Note + end;
     }
 
-    string to_csv(bool useFullName = false, bool asianStyleName = false,
-                  string separator = ",", string end = "") {
-        string tmp = separator + Phone + separator + Tel + separator + Email +
-                     separator + Group + separator + Note + end;
+    string to_csv(bool useFullName = false, bool asianStyleName = false, string separator = ",", string end = "") {
+        string tmp =
+            separator + Phone + separator + Tel + separator + Email + separator + Group + separator + Note + end;
         if (useFullName) {
             if (asianStyleName) {
                 return get_asian_full_name() + tmp;
@@ -112,12 +110,10 @@ class Entry {
         }
     }
 
-    static const string get_csv_header(bool useFullName = false,
-                                       bool asianStyleName = false,
-                                       string separator = ",",
+    static const string get_csv_header(bool useFullName = false, bool asianStyleName = false, string separator = ",",
                                        string end = "") {
-        string tmp = separator + "手机" + separator + "座机" + separator +
-                     "电邮" + separator + "所在组" + separator + "备注" + end;
+        string tmp = separator + "手机" + separator + "座机" + separator + "电邮" + separator + "所在组" + separator +
+                     "备注" + end;
         if (useFullName) {
             return "姓名" + tmp;
         }
@@ -128,14 +124,14 @@ class Entry {
         }
     }
 
-    static const bool chk_email(string &email) {
+    static bool chk_email(string &email) {
         if (email != "" && email != "-" && email.find('@') >= email.size()) {
             return false;
         }
         return true;
     }
 
-    static const bool chk_phone(string &phone) {
+    static bool chk_phone(string &phone) {
         for (auto ch : phone) {
             if (ch != '-' && ch != '+' && ch < '0' && ch > '9') {
                 return false;
@@ -144,7 +140,7 @@ class Entry {
         return true;
     }
 
-    static const bool chk_tel(string &tel) {
+    static bool chk_tel(string &tel) {
         for (auto ch : tel) {
             if (ch != '-' && ch < '0' && ch > '9') {
                 return false;
@@ -154,15 +150,7 @@ class Entry {
     }
 
   private:
-    enum Part {
-        PartFirstName,
-        PartLastName,
-        PartPhone,
-        PartTel,
-        PartEmail,
-        PartGroup,
-        PartNote
-    };
+    enum Part { PartFirstName, PartLastName, PartPhone, PartTel, PartEmail, PartGroup, PartNote };
 
     void set_attribute_by_part_id(Part part, string &data) {
         switch (part) {
